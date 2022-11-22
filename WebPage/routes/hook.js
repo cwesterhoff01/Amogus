@@ -3,11 +3,14 @@ var router = express.Router();
 var Device = require('../models/device');
 
 // Get data from device
-router.post("/report", (req, res) => {
+router.post('/', (req, res) => {
     const coreID = req.body.coreid;
     const rxData = req.body.data;
     const rxEvent = req.body.event;
     const rxPublished_at = req.body.published_at;
+
+    console.log(req.body);
+    //res.status(200).send('ok');
     
     Device.findOne({ "devices.deviceID": coreID }), function(err, device) {
         if(err) {
@@ -15,7 +18,7 @@ router.post("/report", (req, res) => {
         }
 
         else if(!device) {
-            res.status(404).json({ success: false, message: "Device not recognized. Registering device, try again"});
+            //res.status(404).json({ success: false, message: "Device not recognized. Registering device, try again"});
 
             const newDevice = new Device({ event: rxEvent, data: rxData, time: rxPublished_at, id: coreID});
             newDevice.save(function (err) {

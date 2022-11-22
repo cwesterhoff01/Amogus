@@ -1,3 +1,4 @@
+const { Mongoose, model } = require("mongoose");
 const db = require("../db");
 
 const Device = db.model("Device", {

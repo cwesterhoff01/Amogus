@@ -4,7 +4,7 @@ const customerSchema = new db.Schema({
     email: String,
     passwordHash: String,
     devices: [{deviceId: String,
-               deviceKey: String,
+               deviceToken: String,
                data: [{time: Date,
                        heartRate: Number,
                        spo2: Number}]}]

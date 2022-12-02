@@ -3,7 +3,6 @@ var router = express.Router();
 var Customer = require("../models/customer");
 const jwt = require("jwt-simple");
 const fs = require('fs');
-const superagent =  require('superagent');
 
 // Register new device
 router.post('/device', function (req, res) {

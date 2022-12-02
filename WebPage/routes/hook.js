@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Device = require('../models/device');
+var Customer = require('../models/customer');
 
 // Get data from device
 router.post('/', (req, res) => {
@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
     console.log(req.body);
     //res.status(200).send('ok');
     
-    Device.findOne({ "devices.deviceID": coreID }), function(err, device) {
+    Customer.findOne({ "devices.deviceID": coreID }), function(err, device) {
         if(err) {
             res.status(500).json({ success: false, message: "Unknown error", error: err });
         }

@@ -1,9 +1,13 @@
 const db = require("../db");
 
 const customerSchema = new db.Schema({
-    email:      String,
-    passwordHash:   String,
-    lastAccess:     { type: Date, default: Date.now },
+    email: String,
+    passwordHash: String,
+    devices: [{deviceId: String,
+               deviceKey: String,
+               data: [{time: Date,
+                       heartRate: Number,
+                       spo2: Number}]}]
  });
 
 

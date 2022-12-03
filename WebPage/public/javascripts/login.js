@@ -6,7 +6,7 @@ function login() {
     };
 
     $.ajax({
-        url: '/customers/logIn',
+        url: '/account/logIn',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(txdata),

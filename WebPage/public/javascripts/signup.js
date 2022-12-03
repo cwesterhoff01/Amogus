@@ -1,6 +1,7 @@
 // public/javasciprts/signup.js
 
 function signup() {
+    $("#errors").empty();
     // data validation
     if ($('#email').val() === "") {
         window.alert("invalid email!");
@@ -17,11 +18,12 @@ function signup() {
     };
 
     $.ajax({
-        url: '/customers/signUp',
+        url: '/account/signUp',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(txdata),
         dataType: 'json'
+        
     })
     .done(function (data, textStatus, jqXHR) {
         $('#rxData').html(JSON.stringify(data, null, 2));
@@ -36,6 +38,9 @@ function signup() {
         if (jqXHR.status == 404) {
             $('#rxData').html("Server could not be reached!!!");    
         }
+        else if(jqXHR.status == 400){
+            $("#errors").append(`<li>Invalid email or password</li>`);
+        }
         else $('#rxData').html(JSON.stringify(jqXHR, null, 2));
     });
 }
@@ -44,4 +49,5 @@ function signup() {
 
 $(function () {
     $('#btnSignUp').click(signup);
+    
 });

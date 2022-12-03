@@ -31,12 +31,12 @@ router.post('/device', function (req, res) {
                     }
                     // Add device to list
                     else {
-                        Customer.devices.push({
+                        user.devices.push({
                             deviceId: req.body.deviceId,
                             deviceToken: req.body.deviceToken,
                             data: []
                         });
-                        Customer.save(function (err) {
+                        user.save(function (err) {
                             if (err) {
                                 res.status(500).send(err);
                             }

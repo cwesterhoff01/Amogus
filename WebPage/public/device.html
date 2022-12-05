@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Device Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="javascripts/device.js"></script>
+  </head>
+  <body>
+    <div class="container">
+        <a href="index.html" class="left brand-logo valign-wrapper">Sign out</a>
+        <a href="display.html" class="left brand-logo valign-wrapper">Home</a>
+        <a href="password.html" class="left brand-logo valign-wrapper">Change Password</a>
+        <a href="graph.html" class="left brand-logo valign-wrapper">Device</a>
+
+      <br/>
+      <h1>Add Device</h1>
+      <br/>
+      
+      <div>
+        <div>
+          <label for="deviceId">Device ID: </label>
+          <input type="text" id="deviceId" name="deviceId">
+        </div>
+        <div>
+          <label for="deviceName">Device Name: </label>
+          <input type="text" id="deviceName" name="deviceName">
+        </div>
+        <div>
+          <label for="deviceToken">Device Token: </label>
+          <input type="text" id="deviceToken" name="deviceToken">
+        </div>
+        <br/>
+        <button id="registerDevice">Add Device</button>
+      </div>
+    </div>
+
+    <br/>
+      <h1>Delete Device</h1>
+      <br/>
+      
+      <div>
+        <div>
+          <label for="deviceNameDelete">Device Name: </label>
+          <input type="text" id="deviceNameDelete" name="deviceNameDelete">
+        </div>
+        <br/>
+        <button id="deleteDevice">Delete Device</button>
+      </div>
+    </div>
+
+    <div id="your">
+      <h1>Your Devices</h1>
+      <ul id="yourDevices"></ul>
+
+    </div>
+    
+  </body>
+</html>

@@ -1,21 +1,21 @@
-function registerDevice() {
-    const email = $("#email").val();
-    const deviceId = $("#deviceId").val();
-    const deviceToken = $("#deviceToken").val();
+$(function (){
+    $('#signOut').click(logout);
 
     $.ajax({
-        url: '/devices/device',
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            email: email,
-            deviceId: deviceId,
-            deviceToken: deviceToken
-        }),
+        url: '/account/status',
+        method: 'GET',
+        headers: { 'x-auth' : window.localStorage.getItem("token") },
         dataType: 'json'
+    })
+    .done(function (data, textStatus, jqXHR) {
+        $('#rxData').html(JSON.stringify(data, null, 2));
+    })
+    .fail(function (jqXHR, textStatus, errorThrown) {
+        window.location.replace("display.html");
     });
-}
-
-$(function () {
-    $('#registerDevice').click(registerDevice);
 });
+
+function logout() {
+    localStorage.removeItem("token");
+    window.location.replace("index.html");
+}

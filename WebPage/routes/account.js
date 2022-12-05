@@ -8,6 +8,8 @@ const fs = require('fs');
 // On AWS ec2, you can use to store the secret in a separate file. 
 // The file should be stored outside of your code directory. 
 // For encoding/decoding JWT
+
+//SHHH THIS IS VERY SECRET :)
 const secret = fs.readFileSync(__dirname + '/../keys/jwtkey').toString();
 
 // example of authentication
@@ -81,13 +83,14 @@ router.post("/logIn", function(req, res){
       }
       else {
          if (bcrypt.compareSync(req.body.password, customer.passwordHash)) {
+               const token = jwt.encode({ email: customer.email }, secret);
                //update user's last access time
                customer.lastAccess = new Date();
                customer.save( (err, customer) => {
                   console.log("User's LastAccess has been update.");
                });
                // Send back a token that contains the user's username
-               res.status(201).json({ success:true, msg: "Login success" });
+               res.status(201).json({ success:true, token: token, msg: "Login success" });
          }
          else {
             res.status(401).json({ success:false, msg: "Email or password invalid."});
@@ -95,6 +98,61 @@ router.post("/logIn", function(req, res){
       }
    });
 });
+
+router.put('/reset', function (req, res) {
+   if(req.body.password && req.headers['x-auth']){
+      const token = req.headers['x-auth'];
+      const decoded = jwt.decode(token, secret);
+      Customer.findOne({email: decoded.email}, function (err, Customer){
+         if(err){
+            res.status(401).json({success: false, message: "Failed to authenticate user."});
+         }
+         else{
+            Customer.passwordHash = bcrypt.hashSync(req.body.password, 10);
+            Customer.save(function(err){
+               if(err){
+                  res.status(500).json({success: false, message: "Server failed to reset password"});
+               }
+               else{
+                  // Password changed successfully
+                  res.status(201).json({ success: true, message: "Password reset successfully" });
+               }
+            });
+            
+         }
+         
+      });
+   }
+   else{
+      res.status(400).json({ success: false, message: "Missing password or x-auth" });
+   }
+});
+
+router.get("/status", function (req, res) {
+   // See if the X-Auth header is set
+   if (!req.headers["x-auth"]) {
+       return res.status(401).json({ success: false, msg: "Missing X-Auth header" });
+   }
+
+   // X-Auth should contain the token 
+   const token = req.headers["x-auth"];
+   try {
+       const decoded = jwt.decode(token, secret);
+       // Send back email and last access
+       Customer.find({ email: decoded.email }, "email lastAccess", function (err, users) {
+           if (err) {
+               res.status(400).json({ success: false, message: "Error contacting DB. Please contact support." });
+           }
+           else {
+               res.status(200).json(users);
+           }
+       });
+   }
+   catch (ex) {
+       res.status(401).json({ success: false, message: "Invalid JWT" });
+   }
+});
+
 
 
 module.exports = router;

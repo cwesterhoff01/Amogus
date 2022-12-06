@@ -46,7 +46,7 @@ function deleteDevice() {
         }),
         dataType: 'json'
     }).done(function(data, textStats, jqXHR) {
-        $("#yourDevices").removeChild($("#" + deviceName));
+        document.getElementById(deviceName).remove();
         //Clear all text boxes
         document.getElementById('deviceId').value = '';
         document.getElementById('deviceName').value = '';
@@ -65,3 +65,34 @@ $(function () {
 $(function () {
     $('#deleteDevice').click(deleteDevice);
 });
+
+$(function () {
+    $('#fetchDevice').click(fetchDevice);
+    
+});
+
+function fetchDevice() {
+    let deviceList = [];
+    $("#yourDevices").empty();
+    $.ajax({
+        url: '/devices/device',
+        method: 'GET',
+        contentType: 'application/json',
+        headers: {'x-auth': localStorage.getItem("token")},
+        dataType: 'json'
+    }).done(function(data, textStats, jqXHR) {
+        var myData = JSON.parse(data.param);
+        //console.log("data:", myData.deviceNam);
+        for (let i = 0; i < myData.length; i++) {
+            var li = document.createElement("li");
+            li.id = myData[i].deviceName;
+            //THANKS TIM!!!!!!!!!
+            li.append(document.createTextNode(myData[i].deviceName));
+            $("#yourDevices").append(li);
+        }
+        //window.alert(`Success: ${data.responseJSON['msg']}`);
+        
+    }).fail(function(data, textStatus, jqXHR) {
+        window.alert(`Error: ${data.responseJSON['msg']}`);
+    });
+}

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="javascripts/login.js"></script>
+    <script src="javascripts/graph.js"></script>
   </head>
   <body>
     <div class="container">
@@ -14,6 +14,21 @@
         <a href="display.html" class="left brand-logo valign-wrapper">Home</a>
         <a href="device.html" class="left brand-logo valign-wrapper">Add Device</a>
         <a href="password.html" class="left brand-logo valign-wrapper">Change Password</a>
-      
+    <!--
+      7 day weekly summary view
+      min, max, average heartrate for past 7 days
+    --> 
+
+ <!--
+      detailed daily view
+      plot heart rate and blood oxygen readings on separate charts
+    --> 
+
+
+    <div id="data">
+      <h1>Your Devices</h1>
+      <button id="fetchData">Update Graph Data</button>
+    </div>
+
   </body>
 </html>

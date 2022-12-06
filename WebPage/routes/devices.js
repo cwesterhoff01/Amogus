@@ -117,14 +117,33 @@ router.get('/device', function (req, res) {
             else {
                 let device = [];
                 for (let i = 0; i < customer.devices.length; ++i) {
-                    if (customer.devices[i].deviceName == req.query.deviceName) {
-                        device.push(user.devices[i]);
-                    }
+                        device.push(customer.devices[i]);
                 }
                 
+                var myJson = JSON.stringify(device);
+                if (device) {
+                    res.status(200).json({success: true, param: myJson});
+                }
+                else {
+                    res.status(400).json({success: false, msg: "User has no devices"})
+                }
             }
         });
     }
+    else {
+        res.status(400).json({success:false, msg: "Missing x-auth or device name"})
+    }
+});
+
+//Gets the report for the past 7 days
+//The max, min, and average
+router.get('/report', function(req,res){
+
+});
+
+//Gets the past 24 hour sensor data
+router.get('/recent', function(req, res){
+
 });
 
 module.exports = router;

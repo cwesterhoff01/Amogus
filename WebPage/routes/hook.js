@@ -7,9 +7,10 @@ router.post('/', (req, res) => {
     const coreID = req.body.coreid;
     const rxData = req.body.data;
     const rxTime = req.body.published_at;
+    const rxSp02 = 0;
 
     console.log(req.body);
-    //res.status(200).send('ok');
+    res.status(200).send('ok');
     
     Customer.findOne({ "devices.deviceID": coreID }), function(err, customer) {
         if(err) {
@@ -26,7 +27,8 @@ router.post('/', (req, res) => {
                 if(device.deviceID == coreID) {
                     let newData = {
                         time: rxTime,
-                        heartRate: rxData
+                        heartRate: rxData,
+                        spo2: rxSpo2
                     };
                     device.data.push(newData);
                     break;

@@ -3,7 +3,7 @@ $(function () {
     
 });
 
-function fetchDevice() {
+function fetchData() {
     $.ajax({
         url: '/devices/device',
         method: 'GET',

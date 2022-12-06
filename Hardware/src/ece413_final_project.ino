@@ -150,8 +150,9 @@ void loop()
     maxim_heart_rate_and_oxygen_saturation(irBuffer, bufferLength, redBuffer, &spo2, &validSPO2, &heartRate, &validHeartRate);
 
     //Publish events through particle device cloud
-      Particle.publish("heartRate", String(heartRate), PRIVATE);
-      Particle.publish("sp02", String(spo2), PRIVATE);
+    String dataStr;
+    dataStr = String::format("{\"heartRate\": %d, \"spo2\": %d}", heartRate, spo2);
+      Particle.publish("data", dataStr, PRIVATE);
   }
 }
 

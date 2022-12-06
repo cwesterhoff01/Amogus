@@ -152,7 +152,7 @@ void loop()
     //Publish events through particle device cloud
     String dataStr;
     dataStr = String::format("{\"heartRate\": %d, \"spo2\": %d}", heartRate, spo2);
-      Particle.publish("data", dataStr, PRIVATE);
+    Particle.publish("data", dataStr, PRIVATE);
   }
 }
 

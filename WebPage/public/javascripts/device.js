@@ -20,8 +20,8 @@ function registerDevice() {
         var li = document.createElement("li");
         li.id = deviceName;
         //THANKS TIM!!!!!!!!!
-        li.appendChild(document.createTextNode(deviceName));
-        $("#yourDevices").appendChild(li);
+        li.append(document.createTextNode(deviceName));
+        $("#yourDevices").append(li);
         //Clear all text boxes
         document.getElementById('deviceId').value = '';
         document.getElementById('deviceName').value = '';
@@ -48,9 +48,7 @@ function deleteDevice() {
     }).done(function(data, textStats, jqXHR) {
         document.getElementById(deviceName).remove();
         //Clear all text boxes
-        document.getElementById('deviceId').value = '';
-        document.getElementById('deviceName').value = '';
-        document.getElementById('deviceToken').value = '';
+        document.getElementById('deviceNameDelete').value = '';
         window.alert(`Success: ${data.responseJSON['msg']}`);
     }).fail(function(data, textStatus, jqXHR) {
         window.alert(`Error: ${data.responseJSON['msg']}`);
@@ -64,11 +62,6 @@ $(function () {
 
 $(function () {
     $('#deleteDevice').click(deleteDevice);
-});
-
-$(function () {
-    $('#fetchDevice').click(fetchDevice);
-    
 });
 
 function fetchDevice() {

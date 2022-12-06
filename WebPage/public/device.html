@@ -8,7 +8,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="javascripts/device.js"></script>
   </head>
-  <body>
+  <body onload="fetchDevice()">
     <div class="container">
         <a href="index.html" class="left brand-logo valign-wrapper">Sign out</a>
         <a href="display.html" class="left brand-logo valign-wrapper">Home</a>
@@ -54,7 +54,6 @@
     <div id="your">
       <h1>Your Devices</h1>
       <ul id="yourDevices"></ul>
-      <button id="fetchDevice">Update DeviceList</button>
     </div>
     
   </body>

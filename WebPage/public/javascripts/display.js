@@ -35,29 +35,42 @@ function getWeekly() {
         dataType: 'json'
     }).done(function(data, textStats, jqXHR) {
 
-        //get todays date
-        const date = new Date();
-        let day = date.getDate();
-        console.log(day);
+        let heartData = [];
+        let oxygenData = [];
+
+        //get todays date and 7 days ago date
+        var date = new Date();
+        var date1 = new Date(date.getTime() - (7 * 24 * 60 *60 * 1000));
+       
+
         //Getting the device name from text box then clearing
-        const device_name = $('#device_name').val(); 
+        const device_name = $('#device_name').val();
+
         //loop through all data from past 7 days find max, min and avg
         var myData = JSON.parse(data.param);
+
         //loooooooooooooop through myData and see if device name matches
         for (let i = 0; i < myData.length; ++i) {
             if(myData[i].deviceName == device_name) {
-                const device = myData[i];
+                 device = myData[i];
                 break;
             }
         }
+        
         for (let i = 0; i < device.data.length; i++){
-            //device.data[i].heartRate
-            //device.data[i].spo2
-            //check if time in last seven daya
-                //if time on same day log data (check for max, min, and add to ongoing total)
-                //else dont care
+            //Getting device data time recorded
+            let deviceDate = new Date(device.data[i].time);
+            //See if data was taken in past seven days
+            if((deviceDate.getTime() > date1.getTime()) && (deviceDate.getTime < date.getTime())) {
+                heartData.push(device.data[i].heartRate);
+                oxygenData.push(device.data[i].spo2);
+            }
+
         }
+        console.log(heartData);
+        console.log(oxygenData);
         //display that data
+
     }).fail(function(data, textStatus, jqXHR) {
         console.log("failure has occurred call the police for help!");
     });
@@ -83,6 +96,12 @@ function getDaily() {
         let oxygenData = [];
         let device = null;
         const device_name = $('#device_name').val();
+        //month-day
+        let dates = date.split("-");
+        
+        let day = dates[0];
+        let month = dates[1]; 
+
         var myData = JSON.parse(data.param);
         //loooooooooooooop through myData and see if device name matches
         for (let i = 0; i < myData.length; ++i) {
@@ -91,18 +110,21 @@ function getDaily() {
                 break;
             }
         }
+        
         for (let i = 0; i < device.data.length; i++){
-            
-            //device.data[i].heartRate
-            //device.data[i].spo2
             //check if time is on same day
                 //if time on same day log data
                 //else dont care
             let deviceDate = new Date(device.data[i].time);
-            console.log(deviceDate);
-            
-         
+            //console.log(deviceDate);
+            if(deviceDate.getDate() == day && deviceDate.getMonth() == month) {
+                heartData.push(device.data[i].heartRate);
+                oxygenData.push(device.data[i].spo2);
+            }
+
         }
+        console.log(heartData);
+        console.log(oxygenData);
         //Put all data into 2 graph (heart rate, blood oxygen)
             //horizontal axis: time of day
             //vertical axis: measurement

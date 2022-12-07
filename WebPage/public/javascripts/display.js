@@ -54,7 +54,6 @@ function getWeekly() {
             //device.data[i].heartRate
             //device.data[i].spo2
             //check if time in last seven daya
-            if(device.data[i])
                 //if time on same day log data (check for max, min, and add to ongoing total)
                 //else dont care
         }
@@ -78,8 +77,7 @@ function getDaily() {
     }).done(function(data, textStats, jqXHR) {
         //Get the target day from the text box
         const date = $('#day').val();
-        const day
-        const month
+        
         //Find blood oxygen and heart rate data values from database
         const heartData = [];
         const oxygenData = [];

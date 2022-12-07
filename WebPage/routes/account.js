@@ -22,6 +22,8 @@ function validatePassword(pass)
 
    return(upperRegex.test(pass) && lowerRegex.test(pass) && numberRegex.test(pass) && specialRegex.test(pass) && pass.length >= 6);
 }
+
+//
 router.post("/signUp", function(req, res){
    Customer.findOne({email: req.body.email}, function (err, customer) {
       if (err) res.status(401).json({success: false, err: err});

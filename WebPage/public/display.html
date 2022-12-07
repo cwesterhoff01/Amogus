@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Display</title>
+    <title>Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,11 +10,24 @@
   </head>
   <body>
     <div class="container">
-      <a href="index.html" id="signOut">Sign out</a>
-      <a href="device.html" id="addDevice">Device Management</a>
-      <a href="password.html" id="changePassword">Change Password</a>
-      <a href="graph.html" id="Device">Device</a>
+        <a href="index.html" class="left brand-logo valign-wrapper">Sign out&emsp;</a>
+        <a href="device.html" class="left brand-logo valign-wrapper">Add Device&emsp;</a>
+        <a href="password.html" class="left brand-logo valign-wrapper">Change Password&emsp;</a>
+    <!--
+      7 day weekly summary view
+      min, max, average heartrate for past 7 days
+    --> 
+
+ <!--
+      detailed daily view
+      plot heart rate and blood oxygen readings on separate charts
+    --> 
+
+
+    <div id="data">
+      <h1>Your Devices</h1>
+      <button id="fetchData">Update Graph Data</button>
     </div>
-    
+
   </body>
 </html>

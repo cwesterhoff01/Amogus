@@ -56,22 +56,22 @@ function getWeekly() {
                 break;
             }
         }
-        console.log("date = ", date.getTime());
-        console.log("date1 = ", date1.getTime());
+        //console.log("date = ", date.getTime());
+        //console.log("date1 = ", date1.getTime());
         for (let i = 0; i < device.data.length; i++){
             //Getting device data time recorded
             let deviceDate = new Date(device.data[i].time);
             //See if data was taken in past seven days
             console.log("deviceDate = ", deviceDate.getTime());
             if(deviceDate.getTime() > date1.getTime()) {
-                console.log("adding information to arrays!");
+                //console.log("adding information to arrays!");
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
             }
 
         }
-        console.log(heartData);
-        console.log(oxygenData);
+        //console.log(heartData);
+        //console.log(oxygenData);
 
         //display that data (max, min, average)
         let maxHeart = heartData[0];
@@ -122,6 +122,7 @@ function getWeekly() {
         li.append(document.createTextNode("Average Oxygen Saturation = " + avgOx));
         $("#week").append(li);
         
+        //Make it so when click button again do keep adding
 
     }).fail(function(data, textStatus, jqXHR) {
         console.log("failure has occurred call the police for help!");
@@ -228,7 +229,7 @@ function getDaily() {
             ]
         };
     
-        var chart1 = new Chart(ctx, {
+        var chart = new Chart(ctx, {
             type: "line",
             data: dataOx,
             options: {}

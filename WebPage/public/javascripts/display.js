@@ -178,8 +178,7 @@ function getDaily() {
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
                 //timeData.push(deviceDate.getTime());
-                let temp_time = deviceDate;
-                var time_string = (deviceDate.getHours) + ":" + (deviceDate.getMinutes);
+                var time_string = (deviceDate.getHours()) + ":" + (deviceDate.getMinutes());
                 timeData.push(time_string);
                 //console.log("Adding information to the array");
             }

@@ -232,7 +232,26 @@ function getDaily() {
         var chart = new Chart(ctx, {
             type: "line",
             data: dataHeart,
-            options: {}
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [ {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes:[{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Heart Rate (bpm)'
+                        }
+                        
+                    }]
+                }
+            }
         });
         
         var ctx = $("#line-oxygencanvas");

@@ -63,7 +63,7 @@ function getWeekly() {
             let deviceDate = new Date(device.data[i].time);
             //See if data was taken in past seven days
             console.log("deviceDate = ", deviceDate.getTime());
-            if((deviceDate.getTime() > date1.getTime()) && (deviceDate.getTime < date.getTime())) {
+            if(deviceDate.getTime() > date1.getTime()) {
                 console.log("adding information to arrays!");
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);

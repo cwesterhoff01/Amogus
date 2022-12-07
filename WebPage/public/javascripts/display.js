@@ -254,7 +254,11 @@ function getDaily() {
             data: dataOx,
             options: {}
         });
-         
+        
+        console.log("Max = ", maxHeart);
+        console.log("Min = ", minHeart);
+        console.log("Max = ", maxOx);
+        console.log("Min = ", minOx);
         var li = document.createElement("li");
         li.append(document.createTextNode("Max HeartRate = " + maxHeart));
         $("#day_heart").append(li);

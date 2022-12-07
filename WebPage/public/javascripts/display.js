@@ -56,12 +56,14 @@ function getWeekly() {
                 break;
             }
         }
-        
+        console.log("date = ", date);
+        console.log("date1 = ", date1);
         for (let i = 0; i < device.data.length; i++){
             //Getting device data time recorded
             let deviceDate = new Date(device.data[i].time);
             //See if data was taken in past seven days
             if((deviceDate.getTime() > date1.getTime()) && (deviceDate.getTime < date.getTime())) {
+                console.log("adding information to arrays!");
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
             }
@@ -194,7 +196,7 @@ function getDaily() {
                     label: "Heartrate Chart",
                     data: heartData,
                     backgroundColor: "red",
-                    borderColor: "lightred",
+                    borderColor: "pink",
                     fill: false,
                     lineTension: 0,
                     pointRadius: 5
@@ -225,7 +227,7 @@ function getDaily() {
             ]
         };
     
-        var chart = new Chart(ctx, {
+        var chart1 = new Chart(ctx, {
             type: "line",
             data: dataOx,
             options: {}

@@ -168,9 +168,9 @@ function getDaily() {
                 //if time on same day log data
                 //else dont care
             let deviceDate = new Date(device.data[i].time);
-            console.log("device day = ", deviceDate.getDate() + 1);
+            console.log("device day = ", deviceDate.getDate());
             console.log("device month = ", deviceDate.getMonth() + 1);
-            if(deviceDate.getDate() == day && deviceDate.getMonth() == month) {
+            if(deviceDate.getDate() == day && (deviceDate.getMonth() + 1) == month) {
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
                 timeData.push(deviceDate.getTime());

@@ -150,7 +150,9 @@ function getDaily() {
         let dates = date.split("-");
         
         let day = dates[0];
-        let month = dates[1]; 
+        let month = dates[1];
+        console.log("day = ", day);
+        console.log("month = ", month); 
 
         var myData = JSON.parse(data.param);
         //loooooooooooooop through myData and see if device name matches
@@ -166,12 +168,13 @@ function getDaily() {
                 //if time on same day log data
                 //else dont care
             let deviceDate = new Date(device.data[i].time);
-            //console.log(deviceDate);
+            console.log("device day = ", deviceDate.getDate());
+            console.log("device month = ", deviceDate.getMonth());
             if(deviceDate.getDate() == day && deviceDate.getMonth() == month) {
-                console.log("MATCH");
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
                 timeData.push(deviceDate.getTime());
+                console.log("Adding information to the array");
             }
 
         }

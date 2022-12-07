@@ -99,7 +99,7 @@ function getDaily() {
                 //if time on same day log data
                 //else dont care
             let deviceDate = new Date(device.data[i].date);
-            console.log(deviceDate.getDate, deviceDate.getMonth);
+            console.log(deviceDate.getDate(), deviceDate.getMonth());
             
          
         }

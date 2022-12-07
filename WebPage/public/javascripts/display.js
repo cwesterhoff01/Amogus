@@ -69,10 +69,56 @@ function getWeekly() {
         }
         console.log(heartData);
         console.log(oxygenData);
+
         //display that data (max, min, average)
-        let maxHeart = max(heartData);
-        let minHeart = min(heartDate);
-        let av
+        let maxHeart = heartData[0];
+        let minHeart = heartData[0];
+        let tHeart = 0;
+        let maxOx = oxygenData[0];
+        let minOx = oxygenData[0];
+        let tOx = 0;
+
+        for(let i = 0; i < heartData.length; i++){
+            //find min and maxes
+            if(heartData[i] > maxHeart){
+                maxHeart = heartData[i];
+            }
+            if(heartData[i] < minHeart){
+                minHeart = heartData[i];
+            }
+            if(oxygenData[i] > maxOx){
+                maxOx = oxygenData[i];
+            }
+            if(oxygenData[i] < minOx){
+                minOx = oxygenData[i];
+            }
+            tHeart = tHeart + heartData[i];
+            tOx = tOx + oxygenData[i];
+        }
+        let avgHeart = tHeart / heartData.length;
+        let avgOx = tOx / oxygenData.length;
+
+        //Put data onto html page
+        //damn we are great coders!
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Max HeartRate = " + maxHeart));
+        $("#week").append(li);
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Min HeartRate = " + minHeart));
+        $("#week").append(li);
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Average HeartRate = " + avgHeart));
+        $("#week").append(li);
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Max Oxygen Saturation = " + maxOx));
+        $("#week").append(li);
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Min Oxygen Saturation = " + minOx));
+        $("#week").append(li);
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Average Oxygen Saturation = " + avgOx));
+        $("#week").append(li);
+        
 
     }).fail(function(data, textStatus, jqXHR) {
         console.log("failure has occurred call the police for help!");
@@ -97,6 +143,7 @@ function getDaily() {
         //Find blood oxygen and heart rate data values from database
         let heartData = [];
         let oxygenData = [];
+        let timeData = [];
         let device = null;
         const device_name = $('#device_name').val();
         //month-day
@@ -123,16 +170,65 @@ function getDaily() {
             if(deviceDate.getDate() == day && deviceDate.getMonth() == month) {
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
+                timeData.push(deviceDate.getTime());
             }
 
         }
         console.log(heartData);
         console.log(oxygenData);
+
         //Put all data into 2 graph (heart rate, blood oxygen)
             //horizontal axis: time of day
             //vertical axis: measurement
             //min and max values displayed
+        var ctx = $("#line-heartcanvas");
+
+        var dataHeart = {
+            labels: timeData,
+            datasets: [
+                {
+                    label: "Heartrate Chart",
+                    data: heartData,
+                    backgroundColor: "red",
+                    borderColor: "lightred",
+                    fill: false,
+                    lineTension: 0,
+                    pointRadius: 5
+                }
+            ]
+        };
+    
+        var chart = new Chart(ctx, {
+            type: "line",
+            data: dataHeart,
+            options: {}
+        });
+        
+        var ctx = $("#line-oxygencanvas");
+
+        var dataOx = {
+            labels: timeData,
+            datasets: [
+                {
+                    label: "Oxygen Chart",
+                    data: oxygenData,
+                    backgroundColor: "blue",
+                    borderColor: "lightblue",
+                    fill: false,
+                    lineTension: 0,
+                    pointRadius: 5
+                }
+            ]
+        };
+    
+        var chart = new Chart(ctx, {
+            type: "line",
+            data: dataOx,
+            options: {}
+        });
+            
     }).fail(function(data, textStatus, jqXHR) {
         console.log("failure has occurred call the police for help!");
     });
 }
+

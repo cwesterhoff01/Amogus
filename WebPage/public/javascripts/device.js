@@ -90,4 +90,5 @@ function fetchDevice() {
     }).fail(function(data, textStatus, jqXHR) {
         window.alert(`Error: ${data.responseJSON['msg']}`);
     });
+   
 }

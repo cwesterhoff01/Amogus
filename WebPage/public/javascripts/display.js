@@ -149,8 +149,8 @@ function getDaily() {
         //month-day
         let dates = date.split("-");
         
-        let day = dates[1];
-        let month = dates[0];
+        let day = parseInt(dates[1]);
+        let month = parseInt(dates[0]);
         console.log("day = ", day);
         console.log("month = ", month); 
 

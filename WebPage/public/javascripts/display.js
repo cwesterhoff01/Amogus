@@ -98,7 +98,7 @@ function getDaily() {
             //check if time is on same day
                 //if time on same day log data
                 //else dont care
-            let deviceDate = new Date(device.data[i].date);
+            let deviceDate = new Date(device.data[i].time);
             console.log(deviceDate);
             
          

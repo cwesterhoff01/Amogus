@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+.card li {
+  font-style: normal;
+  color:#444;
+  font-size: large;
+}
+
+.card {
+  background-color: #FFF;
+  border-radius: 2px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0px 1px 3px #555;
+}

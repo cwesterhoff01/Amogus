@@ -10,9 +10,9 @@
   </head>
   <body onload="fetchDevice()">
     <div class="container">
-        <a href="index.html" class="left brand-logo valign-wrapper">Sign out&emsp;</a>
-        <a href="display.html" class="left brand-logo valign-wrapper">Home&emsp;</a>
-        <a href="password.html" class="left brand-logo valign-wrapper">Change Password&emsp;</a>
+        <a href="index.html" class="left brand-logo valign-wrapper">Sign out&emsp;&emsp;</a>
+        <a href="display.html" class="left brand-logo valign-wrapper">Home&emsp;&emsp;</a>
+        <a href="password.html" class="left brand-logo valign-wrapper">Change Password&emsp;&emsp;</a>
 
       <br/>
       <h1>Add Device</h1>
@@ -34,26 +34,22 @@
         <br/>
         <button id="registerDevice">Add Device</button>
       </div>
-    </div>
-
-    <br/>
-      <h1>Delete Device</h1>
-      <br/>
-      
-      <div>
-        <div>
-          <label for="deviceNameDelete">Device Name: </label>
-          <input type="text" id="deviceNameDelete" name="deviceNameDelete">
-        </div>
         <br/>
-        <button id="deleteDevice">Delete Device</button>
+        <h1>Delete Device</h1>
+        <br/>
+        
+        <div>
+          <div>
+            <label for="deviceNameDelete">Device Name: </label>
+            <input type="text" id="deviceNameDelete" name="deviceNameDelete">
+          </div>
+          <br/>
+          <button id="deleteDevice">Delete Device</button>
+        </div>
+          <div id="your">
+            <h1>Your Devices</h1>
+            <ul id="yourDevices"></ul>
+          </div>
       </div>
-    </div>
-
-    <div id="your">
-      <h1>Your Devices</h1>
-      <ul id="yourDevices"></ul>
-    </div>
-    
   </body>
 </html>

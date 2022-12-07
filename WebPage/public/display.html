@@ -12,7 +12,7 @@
   <body>
     <div class="container">
         <a href="index.html" class="left brand-logo valign-wrapper">Sign out&emsp;&emsp;</a>
-        <a href="device.html" class="left brand-logo valign-wrapper">Add Device&emsp;&emsp;</a>
+        <a href="device.html" class="left brand-logo valign-wrapper">Manage Devices&emsp;&emsp;</a>
         <a href="password.html" class="left brand-logo valign-wrapper">Change Password&emsp;&emsp;</a>
     <!--
       7 day weekly summary view
@@ -26,9 +26,35 @@
 
 
     <div class="card" id="data">
-      <h1>Your Devices</h1>
-      <button id="fetchData">Update Graph Data</button>
+      <h1>Device Menu</h1>
+      <br>
+      <label for="device_name">Enter device name you wish to view data for: </label>
+      <input type="text" id="device_name" placeholder="Enter Device name" name="device_name">
+      <br>
+      <br>
+      <br>
+      <br>
+      <p>Click the button to view the weekly summary report</p>
+      <button id="getWeekly">Get Weekly Summary View</button>
+      <br>
+      <br>
+      <br>
+      <br>
+      <p>Enter in the day you wish to view the daily report for then click the button</p>
+      <label for="day">Enter day to for Daily View: </label>
+      <br>
+      <input type="text" id="day" placeholder="Enter Day" name="day">
+      <br>
+      <br>
+      <button id="getDaily">Get Detailed Daily View</button>
     </div>
 
+    <div class="card">
+      <h1>Weekly Summary View</h1>
+    </div>
+
+    <div class="card">
+      <h1>Daily View</h1>
+    </div>
   </body>
 </html>

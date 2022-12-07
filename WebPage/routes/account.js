@@ -25,19 +25,22 @@ function validatePassword(pass)
 
 //POST create an account using email and password
 router.post("/signUp", function(req, res){
+   //check if account with email already exists
    Customer.findOne({email: req.body.email}, function (err, customer) {
       if (err) res.status(401).json({success: false, err: err});
       else if (customer) {
          res.status(401).json({success: false, msg: "This email already used"});
       }
       else {
+         //check if password is strong
          if(validatePassword(req.body.password)){
+            //encrypt password
             const bcryptPass = bcrypt.hashSync(req.body.password, 10);
             const newCustomer = new Customer({
                email: req.body.email,
                passwordHash: bcryptPass  
             });
-                  
+            //create account      
             newCustomer.save(function(err, customer) {
                if (err) {
                   res.status(400).json({success: false, err: err});
@@ -59,6 +62,7 @@ router.post("/signUp", function(req, res){
 
 //POST log in to account using email and password then create a token
 router.post("/logIn", function(req, res){
+   //Check if fields present
    if (!req.body.email || !req.body.password) {
       res.status(401).json({ error: "Missing email and/or password"});
       return;
@@ -74,6 +78,7 @@ router.post("/logIn", function(req, res){
       }
       else {
          if (bcrypt.compareSync(req.body.password, customer.passwordHash)) {
+               //create token for x-auth
                const token = jwt.encode({ email: customer.email }, secret);
                //update user's last access time
                customer.lastAccess = new Date();
@@ -90,18 +95,25 @@ router.post("/logIn", function(req, res){
    });
 });
 
+//PUT reset password 
 router.put('/reset', function (req, res) {
+   //login token x-auth check
    if(req.body.password && req.headers['x-auth']){
       const token = req.headers['x-auth'];
       const decoded = jwt.decode(token, secret);
+      //find account in database
       Customer.findOne({email: decoded.email}, function (err, Customer){
+         //acount not found
          if(err){
             res.status(401).json({success: false, message: "Failed to authenticate user."});
          }
+         //account found
          else{
+            //encrypt password
             Customer.passwordHash = bcrypt.hashSync(req.body.password, 10);
             Customer.save(function(err){
                if(err){
+                  //Password change failed
                   res.status(500).json({success: false, message: "Server failed to reset password"});
                }
                else{
@@ -115,10 +127,12 @@ router.put('/reset', function (req, res) {
       });
    }
    else{
+      //no token for x-auth
       res.status(400).json({ success: false, message: "Missing password or x-auth" });
    }
 });
 
+//GET token for x-auth
 router.get("/status", function (req, res) {
    // See if the X-Auth header is set
    if (!req.headers["x-auth"]) {

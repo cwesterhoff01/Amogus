@@ -63,6 +63,7 @@ router.post('/device', function (req, res) {
 
 // Remove device
 router.delete('/device', function (req, res) {
+    //check token
     if (req.headers['x-auth']) {
         const token = req.headers['x-auth'];
         const decoded = jwt.decode(token, secret);
@@ -81,6 +82,7 @@ router.delete('/device', function (req, res) {
                         index = i;
                     }
                 }
+                //if device found remove
                 if (index >= 0) {
                     customer.devices.splice(index, 1);
                     customer.save(function (err) {
@@ -103,10 +105,13 @@ router.delete('/device', function (req, res) {
     }
 });
 
+//get all user devices
 router.get('/device', function (req, res) {
+    //check token
     if (req.headers['x-auth']) {
         const token = req.headers['x-auth'];
         const decoded = jwt.decode(token, secret);
+        //find account
         Customer.findOne({ email: decoded.email }, function (err, customer) {
             if (err) {
                 res.status(500).json({ success: false, msg: "Server error" });
@@ -115,15 +120,18 @@ router.get('/device', function (req, res) {
                 res.status(401).json({ success: false, msg: "User could not be found" });
             }
             else {
+                //find devices
                 let device = [];
                 for (let i = 0; i < customer.devices.length; ++i) {
                         device.push(customer.devices[i]);
                 }
                 
                 var myJson = JSON.stringify(device);
+                //if devices found return json array
                 if (device) {
                     res.status(200).json({success: true, param: myJson});
                 }
+                //no devices
                 else {
                     res.status(400).json({success: false, msg: "User has no devices"})
                 }

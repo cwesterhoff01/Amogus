@@ -57,11 +57,13 @@ function deleteDevice() {
     });
 }
 
+//add listener
 $(function () {
     $('#registerDevice').click(registerDevice);
     
 });
 
+//add listener
 $(function () {
     $('#deleteDevice').click(deleteDevice);
 });
@@ -77,7 +79,6 @@ function fetchDevice() {
         dataType: 'json'
     }).done(function(data, textStats, jqXHR) {
         var myData = JSON.parse(data.param);
-        //console.log("data:", myData.deviceNam);
         for (let i = 0; i < myData.length; i++) {
             var li = document.createElement("li");
             li.id = myData[i].deviceName;
@@ -85,7 +86,6 @@ function fetchDevice() {
             li.append(document.createTextNode(myData[i].deviceName));
             $("#yourDevices").append(li);
         }
-        //window.alert(`Success: ${data.responseJSON['msg']}`);
         
     }).fail(function(data, textStatus, jqXHR) {
         window.alert(`Error: ${data.responseJSON['msg']}`);

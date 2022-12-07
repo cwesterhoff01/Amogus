@@ -155,8 +155,8 @@ function getDaily() {
         
         let day = parseInt(dates[1]);
         let month = parseInt(dates[0]);
-        console.log("day = ", day);
-        console.log("month = ", month); 
+        //console.log("day = ", day);
+        //console.log("month = ", month); 
 
         var myData = JSON.parse(data.param);
         //loooooooooooooop through myData and see if device name matches
@@ -172,19 +172,39 @@ function getDaily() {
                 //if time on same day log data
                 //else dont care
             let deviceDate = new Date(device.data[i].time);
-            console.log("device day = ", deviceDate.getDate());
-            console.log("device month = ", deviceDate.getMonth() + 1);
+            //console.log("device day = ", deviceDate.getDate());
+            //console.log("device month = ", deviceDate.getMonth() + 1);
             if(deviceDate.getDate() == day && (deviceDate.getMonth() + 1) == month) {
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
                 timeData.push(deviceDate.getTime());
-                console.log("Adding information to the array");
+                //console.log("Adding information to the array");
             }
 
         }
-        console.log(heartData);
-        console.log(oxygenData);
+        //console.log(heartData);
+       // console.log(oxygenData);
 
+        //Finding max and mins
+        let maxHeart = heartData[0];
+        let minHeart = heartData[0];
+        let maxOx = oxygenData[0];
+        let minOx = oxygenData[0];
+        for(let i = 0; i < heartData.length; i++){
+            //find min and maxes
+            if(heartData[i] > maxHeart){
+                maxHeart = heartData[i];
+            }
+            if(heartData[i] < minHeart){
+                minHeart = heartData[i];
+            }
+            if(oxygenData[i] > maxOx){
+                maxOx = oxygenData[i];
+            }
+            if(oxygenData[i] < minOx){
+                minOx = oxygenData[i];
+            }
+        }
         //Put all data into 2 graph (heart rate, blood oxygen)
             //horizontal axis: time of day
             //vertical axis: measurement
@@ -234,7 +254,22 @@ function getDaily() {
             data: dataOx,
             options: {}
         });
-            
+         
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Max HeartRate = " + maxHeart));
+        $("#day_heart").append(li);
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Min HeartRate = " + minHeart));
+        $("#day_heart").append(li);
+
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Max Oxygen Saturation = " + maxOx));
+        $("#day_oxygen").append(li);
+        var li = document.createElement("li");
+        li.append(document.createTextNode("Min Oxygen Saturation = " + minOx));
+        $("#day_oxygen").append(li);
+
+        
     }).fail(function(data, textStatus, jqXHR) {
         console.log("failure has occurred call the police for help!");
     });

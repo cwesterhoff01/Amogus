@@ -79,8 +79,8 @@ function getDaily() {
         const date = $('#day').val();
         
         //Find blood oxygen and heart rate data values from database
-        const heartData = [];
-        const oxygenData = [];
+        let heartData = [];
+        let oxygenData = [];
         let device = null;
         const device_name = $('#device_name').val();
         var myData = JSON.parse(data.param);
@@ -98,7 +98,7 @@ function getDaily() {
             //check if time is on same day
                 //if time on same day log data
                 //else dont care
-            const deviceDate = new Date();
+            let deviceDate = new Date();
             deviceDate = device.data[i].date;
             console.log(deviceDate.getDate, deviceDate.getMonth);
             

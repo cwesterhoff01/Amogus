@@ -81,7 +81,7 @@ function getDaily() {
         //Find blood oxygen and heart rate data values from database
         const heartData = [];
         const oxygenData = [];
-        const device;
+        let device = null;
         const device_name = $('#device_name').val();
         var myData = JSON.parse(data.param);
         //loooooooooooooop through myData and see if device name matches

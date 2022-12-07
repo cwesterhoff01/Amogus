@@ -168,6 +168,7 @@ function getDaily() {
             let deviceDate = new Date(device.data[i].time);
             //console.log(deviceDate);
             if(deviceDate.getDate() == day && deviceDate.getMonth() == month) {
+                console.log("MATCH");
                 heartData.push(device.data[i].heartRate);
                 oxygenData.push(device.data[i].spo2);
                 timeData.push(deviceDate.getTime());

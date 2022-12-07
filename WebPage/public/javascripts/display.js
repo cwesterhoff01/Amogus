@@ -69,7 +69,10 @@ function getWeekly() {
         }
         console.log(heartData);
         console.log(oxygenData);
-        //display that data
+        //display that data (max, min, average)
+        let maxHeart = max(heartData);
+        let minHeart = min(heartDate);
+        let av
 
     }).fail(function(data, textStatus, jqXHR) {
         console.log("failure has occurred call the police for help!");

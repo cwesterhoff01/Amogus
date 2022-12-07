@@ -23,7 +23,7 @@ function validatePassword(pass)
    return(upperRegex.test(pass) && lowerRegex.test(pass) && numberRegex.test(pass) && specialRegex.test(pass) && pass.length >= 6);
 }
 
-//
+//POST create an account using email and password
 router.post("/signUp", function(req, res){
    Customer.findOne({email: req.body.email}, function (err, customer) {
       if (err) res.status(401).json({success: false, err: err});
@@ -57,6 +57,7 @@ router.post("/signUp", function(req, res){
    });
 });
 
+//POST log in to account using email and password then create a token
 router.post("/logIn", function(req, res){
    if (!req.body.email || !req.body.password) {
       res.status(401).json({ error: "Missing email and/or password"});

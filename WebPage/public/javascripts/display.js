@@ -274,7 +274,26 @@ function getDaily() {
         var chart = new Chart(ctx, {
             type: "line",
             data: dataOx,
-            options: {}
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [ {
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes:[{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Oxygen Saturation Level (%)'
+                        }
+                        
+                    }]
+                }
+            }
         });
         
         console.log("Max = ", maxHeart);

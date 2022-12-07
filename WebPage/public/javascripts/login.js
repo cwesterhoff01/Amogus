@@ -1,4 +1,5 @@
 // public/javasciprts/login.js
+//login function
 function login() {
     let txdata = {
         email: $('#email').val(),
@@ -20,7 +21,7 @@ function login() {
         $('#rxData').html(JSON.stringify(jqXHR, null, 2));
     });
 }
-
+//setup listener
 $(function () {
     $('#btnLogIn').click(login);
 });

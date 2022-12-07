@@ -1,3 +1,4 @@
+//add device to user
 function registerDevice() {
     const email = $("#email").val();
     const deviceId = $("#deviceId").val();
@@ -32,6 +33,7 @@ function registerDevice() {
     });
 }
 
+//delete device from user
 function deleteDevice() {
     const email = $("#email").val();
     const deviceName = $("#deviceNameDelete").val();
@@ -64,8 +66,8 @@ $(function () {
     $('#deleteDevice').click(deleteDevice);
 });
 
+//fetch all devices attached to user
 function fetchDevice() {
-    let deviceList = [];
     $("#yourDevices").empty();
     $.ajax({
         url: '/devices/device',

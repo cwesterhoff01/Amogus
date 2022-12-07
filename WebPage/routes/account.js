@@ -12,13 +12,7 @@ const fs = require('fs');
 //SHHH THIS IS VERY SECRET :)
 const secret = fs.readFileSync(__dirname + '/../keys/jwtkey').toString();
 
-// example of authentication
-// register a new customer
-
-// please fiil in the blanks
-// see javascript/signup.js for ajax call
-// see Figure 9.3.5: Node.js project uses token-based authentication and password hashing with bcryptjs
-// in https://learn.zybooks.com/zybook/ARIZONAECE413SalehiFall2022/chapter/9/section/3
+//valid password check (1 uppercase, 1 lowercase, 1 number, 1 special character, and length > 6)
 function validatePassword(pass)
 {
    const upperRegex = /[A-Z]/;
@@ -60,12 +54,6 @@ router.post("/signUp", function(req, res){
        }
    });
 });
-
-
-// please fiil in the blanks
-// see javascript/login.js for ajax call
-// see Figure 9.3.5: Node.js project uses token-based authentication and password hashing with bcryptjs
-// in https://learn.zybooks.com/zybook/ARIZONAECE413SalehiFall2022/chapter/9/section/3
 
 router.post("/logIn", function(req, res){
    if (!req.body.email || !req.body.password) {

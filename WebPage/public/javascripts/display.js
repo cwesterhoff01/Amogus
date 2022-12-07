@@ -1,3 +1,4 @@
+//sign out
 $(function (){
     $('#signOut').click(logout);
 
@@ -15,12 +16,14 @@ $(function (){
     });
 });
 
+//logout
 function logout() {
     localStorage.removeItem("token");
     window.location.replace("index.html");
 }
+//setup listener 
 $(function () {
-    $('#fetchData').click(fetchDevice);
+    $('#fetchData').click(fetchData);
     
 });
 //Graphing stuff i guess

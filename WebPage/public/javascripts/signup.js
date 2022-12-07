@@ -1,5 +1,5 @@
 // public/javasciprts/signup.js
-
+//create account using email and username
 function signup() {
     $("#errors").empty();
     // data validation
@@ -46,7 +46,7 @@ function signup() {
 }
 
 
-
+//add event listener
 $(function () {
     $('#btnSignUp').click(signup);
     

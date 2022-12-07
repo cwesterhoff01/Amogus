@@ -103,6 +103,7 @@ function getWeekly() {
 
         //Put data onto html page
         //damn we are great coders!
+        $("#week").empty();
         var li = document.createElement("li");
         li.append(document.createTextNode("Max HeartRate = " + maxHeart));
         $("#week").append(li);
@@ -261,6 +262,8 @@ function getDaily() {
         console.log("Min = ", minHeart);
         console.log("Max = ", maxOx);
         console.log("Min = ", minOx);
+
+        $("#day_heart").empty();
         var li = document.createElement("li");
         li.append(document.createTextNode("Max HeartRate = " + maxHeart));
         $("#day_heart").append(li);
@@ -268,6 +271,7 @@ function getDaily() {
         li.append(document.createTextNode("Min HeartRate = " + minHeart));
         $("#day_heart").append(li);
 
+        $("#day_oxygen").empty();
         var li = document.createElement("li");
         li.append(document.createTextNode("Max Oxygen Saturation = " + maxOx));
         $("#day_oxygen").append(li);

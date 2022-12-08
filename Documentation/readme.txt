@@ -13,6 +13,7 @@ How to run the project
 To run the project you will need to use the command npm install in the WebPage folder.
 Then run the command node app.js to start the server.
 Connect to the site localhost:3001 (port 3000 caused errors on the aws).
+The display page will not work as no devices are connected, must have device data to display data
 
 -----------------------------------------------------------------------------------------------------------------------------------
 Server Implementation Description

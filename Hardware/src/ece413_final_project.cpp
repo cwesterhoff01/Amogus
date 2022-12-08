@@ -163,4 +163,3 @@ void loop()
       Particle.publish("sp02", String(spo2), PRIVATE);
   }
 }
-

@@ -1,0 +1,3 @@
+- ALL Documentation can be found in the documentation folder.
+- The hardware folder contains all code related to the particle device.
+- The WebPage folder contains all code related to the AWS server.

@@ -1,6 +1,6 @@
-Link to Pitch Video:
-Link to Video Demonstration:
-Link for aws link:
+Link to Pitch Video: https://www.youtube.com/watch?v=V3TOyucUdJ0
+Link to Video Demonstration: https://www.youtube.com/watch?v=PCgK6rp18DI
+Link for aws link:  http://ec2-3-86-45-18.compute-1.amazonaws.com:3000/
 	existing login credetials:
 		username: admin
 		password: Password123@
